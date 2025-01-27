@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Главная{% endblock title %}
+{% block title %}YaCut - укоротитель ссылок{% endblock %}
 {% block content %}
 
 <main>
@@ -55,10 +55,13 @@
           </form>
 
           {% if short_link %}
-            <h5 class="text-center mt-4">Ваша новая ссылка готова:<br />
-            <a href="{{ short_link }}">{{ short_link }}</a>
-            </h5>
-          {% endif %}
+          <div class="card shadow-sm mt-5 p-4 text-center bg-light">
+            <h5 class="mb-4">Ваша новая ссылка готова:</h5>
+            <a href="{{ short_link }}" class="btn btn-outline-primary btn-lg">
+              {{ short_link }}
+            </a>
+          </div>
+        {% endif %}
 
         </div>
         <div class="col-sm">
