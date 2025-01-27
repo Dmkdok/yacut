@@ -1,0 +1,11 @@
+import os
+
+CUSTOM_ID_LENGTH = 16
+ORIGINAL_LINK_LENGTH = 512
+CUSTOM_ID_PATTERN = r'^[a-zA-Z0-9]+$'
+
+
+class Config:
+    SECRET_KEY = os.getenv('SECRET_KEY', 'YOUR_SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///db.sqlite3')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
