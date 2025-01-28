@@ -6,6 +6,8 @@ from settings import CUSTOM_ID_LENGTH, CUSTOM_ID_PATTERN, ORIGINAL_LINK_LENGTH
 
 
 class URLForm(FlaskForm):
+    """Форма для создания короткой ссылки."""
+
     original_link = URLField(
         'Длинная ссылка',
         validators=[

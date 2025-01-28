@@ -8,6 +8,8 @@ from yacut.utils import get_unique_short_id
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """Обрабатывает главную страницу приложения."""
+
     form = URLForm()
     if form.validate_on_submit():
         original_link = form.original_link.data
@@ -42,5 +44,10 @@ def index():
 
 @app.route('/<short>')
 def redirect_short_url(short):
+    """
+    Перенаправляет пользователя на оригинальную ссылку,
+    соответствующую короткому идентификатору.
+    """
+
     url_map = URLMap.query.filter_by(short=short).first_or_404()
     return redirect(url_map.original)

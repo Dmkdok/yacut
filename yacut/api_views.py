@@ -1,4 +1,5 @@
 import re
+from http import HTTPStatus
 
 from flask import jsonify, request
 
@@ -11,6 +12,10 @@ from yacut.utils import get_unique_short_id
 
 @app.route('/api/id/', methods=['POST'])
 def create_short_link():
+    """
+    Создает короткую ссылку на основе переданной длинной ссылки
+    и пользовательского идентификатора (если предоставлен).
+    """
 
     data = request.get_json(silent=True)
     if not data:
@@ -43,13 +48,21 @@ def create_short_link():
     db.session.add(new_url)
     db.session.commit()
 
-    return jsonify(new_url.to_dict()), 201
+    return jsonify(new_url.to_dict()), HTTPStatus.CREATED
 
 
 @app.route('/api/id/<short_id>/', methods=['GET'])
 def get_original_link(short_id):
+    """
+    Возвращает оригинальную ссылку, соответствующую переданному
+    короткому идентификатору.
+    """
+
     url_map = URLMap.query.filter_by(short=short_id).first()
     if not url_map:
-        return jsonify({'message': 'Указанный id не найден'}), 404
+        return (
+            jsonify({'message': 'Указанный id не найден'}),
+            HTTPStatus.NOT_FOUND,
+        )
 
     return jsonify({'url': url_map.original})
