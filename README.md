@@ -8,7 +8,7 @@ YaCut — это сервис для создания коротких ссыл�
 
 1. **Клонирование репозитория:**
    ```bash
-   git clone https://github.com/yourusername/yacut.git
+   git clone https://github.com/Dmkdok/yacut.git
    cd yacut
    ```
 
